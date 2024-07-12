@@ -1,2 +1,2 @@
 # ProductHunt_reviews_crawler
-Python crawler for reviews in ProductHunt
+由于评论无法直接全部显示，需要我们不断点击"show more"才能看到，因此本爬虫使用selenuim的webdriver模拟浏览器进行button按钮点击，最后解析html得到想要的字段，包括评论内容、星级和评论时间
