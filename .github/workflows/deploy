@@ -1,0 +1,27 @@
+name: ssh deploy 
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: scp ssh pipelines
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      env:
+        LASTSSH: "Deployment complete"
+      with:
+        host: ${{ secrets.DC_HOST }}
+        user: ${{ secrets.DC_USER }}
+        pass: ${{ secrets.DC_PASS }}
+        scp: |
+          ./ => /opt/deploy
+        last_ssh: |
+          echo $LASTSSH 
